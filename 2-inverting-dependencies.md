@@ -117,3 +117,5 @@ It's a hexagon because it can have more than one adapter on each side (but could
 By freeing the business logic from the other concerns, we have 2 huge upsides:
 - our code is very maintainable, and a new spec doesn't require changes everywhere in the codebase.
 - we can model the business code in a different way from the persistence code or the UI part. This allows us to have the perfect model for each of these.
+
+The rest of the book will use hexagonal architecture for a web app.
