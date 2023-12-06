@@ -111,12 +111,14 @@ This logic uses ports, which are called (in) and implemented (out) by the adapte
 ### what actually happens
 
 Here is the way things happen here:
-1. An `AccountController` (the input adapter) triggers an action.
-2. The `SendMoneyService`, which implements the incoming port interface `SendMoneyUseCase`, gets called.
+1. An `AccountController` (the input adapter) triggers an action by calling the `SendMoneyUseCase` interface (the input port)
+2. The `SendMoneyService`, which implements `SendMoneyUseCase`, gets called.
 3. The `SendMoneyService` performs some logic using the entities in the domain.
-4. The `SendMoneyService`, implementing `LoadAccountPort` and `UpdateAccountStatePort`, uses them.
-5. This triggers the `AccountPersistenceAdapter` and `SpringDataAccountRepository` (the output adapters).
+4. The `SendMoneyService`, calls the `LoadAccountPort` and `UpdateAccountStatePort` interfaces (the output ports) to use the persistence logic.
+5. This triggers the `AccountPersistenceAdapter` and `SpringDataAccountRepository` (the output adapters), as they implement the `LoadAccountPort` and `UpdateAccountStatePort` interfaces.
 6. These adapters do their persistence jobs.
+
+You can see that the layers don't depend on each other, but interact via interfaces that abstracts each layer from each other.
 
 ### Positive
 
