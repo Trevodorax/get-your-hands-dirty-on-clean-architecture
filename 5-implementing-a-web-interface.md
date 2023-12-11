@@ -150,4 +150,3 @@ For example, `CreateAccountController` might be named `registerAccountController
 When building this adapter, we create classes that only do HTTP work and conversion, and not any domain logic.
 
 This, in addition to a good splitting, will make the code easier to test, and read, and the time lost setting this up will pay off in the end.
-
