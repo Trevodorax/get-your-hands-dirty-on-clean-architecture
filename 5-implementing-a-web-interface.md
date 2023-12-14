@@ -128,14 +128,22 @@ Here is what one operation would look like:
 
 ```java
 package buckpal.adapter.web;
-@RestController @RequiredArgsConstructor
+@RestController 
+@RequiredArgsConstructor
 public class SendMoneyController {
     private final SendMoneyUseCase sendMoneyUseCase;
     @PostMapping(path = "/accounts/sendMoney/{sourceAccountId}/{targetAccountId}/{amount}")
     void sendMoney(
-        @PathVariable("sourceAccountId") Long sourceAccountId, @PathVariable("targetAccountId") Long targetAccountId, @PathVariable("amount") Long amount) {
-        SendMoneyCommand command = new SendMoneyCommand(new AccountId(sourceAccountId), new AccountId(targetAccountId), Money.of(amount));
-        sendMoneyUseCase.sendMoney(command);
+            @PathVariable("sourceAccountId") Long sourceAccountId, 
+            @PathVariable("targetAccountId") Long targetAccountId, 
+            @PathVariable("amount") Long amount
+        ) {
+            SendMoneyCommand command = new SendMoneyCommand(
+                new AccountId(sourceAccountId), 
+                new AccountId(targetAccountId), 
+                Money.of(amount)
+            );
+            sendMoneyUseCase.sendMoney(command);
     }
 }
 ```
